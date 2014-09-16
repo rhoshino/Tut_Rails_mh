@@ -1,0 +1,28 @@
+@Todo List
+---2014/09/16 17:30:53---
+http://railstutorial.jp/chapters/static-pages?version=3.2#sidebar-get_etc
+3.5 演習
+1)サンプルアプリケーションにContact (問い合わせ先) ページを作成してください。
+
+*リスト3.18に従い、最初に、h1の内容が正しいかどうかを確認するテストを作成することで、URIが/static_pages/contactのページが存在することを確認するテストを作成してください。
+    ->sample_app/spec/requests/static_pages_spec.rb
+      を追記する。 -- done
+
+*次に、タイトルが “Ruby on Rails Tutorial Sample App | Contact” となっていることを確認するテストを作成してください。
+    ->sample_app/spec/requests/static_pages_spec.rb
+      を追記する。 -- done
+
+*次にこれらのテストにパスするようにしてください。
+    ->routes.rbを書き換えて、アクションを追加する -- done
+    ->viewにページを追加して、ページを作成する -- done
+
+*それが終わったら、リスト 3.29の内容をContactページに反映させましょう。
+(この演習の解答は5.3の説明に含まれています)。
+
+2)お気付きの方もいると思いますが、リスト3.18に示されている、
+StaticPagesコントローラのspecテストには若干の重複があります。
+特に、“Ruby on Rails Tutorial SampleApp”というタイトルはそれぞれのタイトルのテストで繰り返し記述されています。
+
+*引数として渡されたシンボルと同名の変数にブロックの評価値を格納する、RSpecのlet関数を使い、リスト 3.30のようにテストを変更し、テストにパスするようにしましょう。
+
+*リスト3.30では文字列の式展開 (string interpolation) が行われていますが、これについては4.2.2で紹介します。
