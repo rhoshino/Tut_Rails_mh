@@ -1,45 +1,75 @@
-require 'spec_helper'
+#require 'spec_helper'
 
 describe "StaticPages" do
-  
+
+  #let(:base_title) { "Ruby on Rails Tutorial Sample App" }
+
+  subject { page }
+
+  shared_examples_for "all static pages" do
+    it{ should have_selector('h1', text: heading)}
+    it{ should have_selector('title',text: full_title(page_title))}
+  end
+
   describe "Home page" do
+    #Homeページにアクセスする
+    before{visit root_path}
 
-    it "should have the content 'Sample App'" do
-      visit '/static_pages/home'
-      page.should have_content('Sample App')
-    end
-
-    it "should have the title 'Home'" do
-      visit '/static_pages/home'
-      page.should have_selector('title',
-        :text => "Ruby on Rails Tutorial Sample App | Home")
-    end
-
+    let(:heading) {'Sample App'}
+    let(:page_title){''}
+    #h1にSample App という文字列が含まれるかどうかのテスト
+    #タイトルの文字列の整合性テスト
+    it_should_behave_like "all static pages"
+    #タイトルの文字列の整合性テスト(Homeはいらない)
+    it { should_not have_selector 'title',text: '| Home'}
   end
 
   describe "Help page" do
+    #Helpページにアクセスする
+    before{visit help_path}
 
-  	it "should have the content 'Help'" do
-  		visit '/static_pages/help'
-  		page.should have_content('Help')
-  	end
-    it "should have the title 'Help'" do
-      visit '/static_pages/help'
-      page.should have_selector('title',
-        :text => "Ruby on Rails Tutorial Sample App | Help")
-    end
+    let(:heading) {'Help'}
+    let(:page_title){'Help'}
+    #h1にHelp という文字列が含まれるかどうかのテスト
+    #タイトルの文字列の整合性テスト
+    it_should_behave_like "all static pages"
   end
 
   describe "About page"do
-  	it "should have the content 'About Us'" do
-  		visit '/static_pages/about'
-  		page.should have_content('About Us')
-  	end
-    it "should have the title 'About Us'" do
-      visit '/static_pages/about'
-      page.should have_selector('title',
-          :text => "Ruby on Rails Tutorial Sample App | About Us")
-    end
+    #Aboutページにアクセスする
+    before{visit about_path}
+
+    let(:heading) {'About'}
+    let(:page_title){'About'}
+    #h1にHelp という文字列が含まれるかどうかのテスト
+    #タイトルの文字列の整合性テスト
+    it_should_behave_like "all static pages"
   end
 
-end
+  describe "Contact page"do
+    #Contactページにアクセスする
+    before{visit contact_path}
+
+    let(:heading) {'Contact'}
+    let(:page_title){'Contact'}
+    #h1にHelp という文字列が含まれるかどうかのテスト
+    #タイトルの文字列の整合性テスト
+    it_should_behave_like "all static pages"
+  end
+
+  #実際にリンクの確認。
+  it "should have the right links on the layout" do
+    visit root_path
+    click_link "About"
+    page.should have_selector 'title', text: full_title('About Us')
+    click_link "Help"
+    page.should # fill in
+    click_link "Contact"
+    page.should # fill in
+    click_link "Home"
+    click_link "Sign up now!"
+    page.should # fill in
+    click_link "sample app"
+    page.should # fill in
+  end
+end #Static_pages
