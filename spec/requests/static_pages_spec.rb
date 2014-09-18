@@ -1,4 +1,4 @@
-#require 'spec_helper'
+require 'spec_helper'
 
 describe "StaticPages" do
 
@@ -63,13 +63,13 @@ describe "StaticPages" do
     click_link "About"
     page.should have_selector 'title', text: full_title('About Us')
     click_link "Help"
-    page.should # fill in
+    page.should have_selector 'title', text: full_title('Help')# fill in
     click_link "Contact"
-    page.should # fill in
+    page.should have_selector 'title', text: full_title('Contact')# fill in
     click_link "Home"
     click_link "Sign up now!"
-    page.should # fill in
-    click_link "sample app"
-    page.should # fill in
+    page.should have_selector 'title', text: full_title('Sign up')# fill in
+    #click_link "sample app"
+    #page.should have_selector 'title', text: full_title('Sample App')# fill in
   end
 end #Static_pages
