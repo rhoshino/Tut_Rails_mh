@@ -15,4 +15,7 @@
 /tmp
 
 #ignore project file
-/.idea/
+.idea/
+
+#ignore temp.txt
+/temp.txt
